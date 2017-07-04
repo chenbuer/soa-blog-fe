@@ -20,6 +20,7 @@
 
 <script>
 import Vue from 'vue';
+import api from '../../api';
 // 注册Nav组件
 Vue.component('my-nav', function (resolve) {
   require(['./common/IndexNav'], resolve)
@@ -46,14 +47,14 @@ export default {
   methods:{
     getAboutMe:function(){
       var _this=this;
-      axios.get("http://localhost:8080/article/"+this.$route.params.articleId)
-            .then(function (response) {
-              console.log(response);
-              _this.blog=response.data.result;
-            })
-            .catch(function (error) {
-              console.log(error);
-            });
+      api.request('get', '/article/'+this.$route.params.articleId, null)
+      .then(response => {
+        // console.log(response);
+        _this.blog=response.data.result;
+      })
+      .catch(error => {
+        console.log(error);
+      })
     }
   }
 }

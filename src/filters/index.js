@@ -11,7 +11,7 @@ export function count (arr) {
 
 export function prettyDate (date) {
   var a = new Date(date)
-  return a.toDateString()
+  return a.toLocaleDateString()
 }
 
 export function pluralize (time, label) {

@@ -2,7 +2,7 @@
   <div class="panel panel-default" id="indexSliderTypes">
     <div class="panel-heading">
       <h3 class="panel-title">
-        <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>&nbsp;按博客类别
+        <i class="icon ion-ios-folder"></i>&nbsp;按博客类别
       </h3>
     </div>
     <div class="panel-body">
@@ -17,6 +17,7 @@
 </template>
 
 <script>
+import api from '../../../../api';
 export default {
   name: 'indexSliderTypes',
   data() {
@@ -32,16 +33,14 @@ export default {
   methods:{
       getBlogTypes: function () {
           var _this=this;
-          axios.get('http://localhost:8080/blogTypes')
-              .then(function (response) {
-                  //console.log("getTypes");
-                  //console.log(response);
-                  _this.types=response.data.result; 
-
-              })
-              .catch(function (error) {
-                  console.log(error);
-              });
+          api.request('get', '/blogTypes', null)
+          .then(response => {
+            // console.log(response);
+            _this.types=response.data.result; 
+          })
+          .catch(error => {
+            console.log(error);
+          })
 
       }
   }

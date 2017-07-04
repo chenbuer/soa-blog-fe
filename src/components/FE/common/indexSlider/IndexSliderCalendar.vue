@@ -17,6 +17,8 @@
 </template>
 
 <script>
+import api from '../../../../api';
+
 export default {
   name: 'indexCalendar',
   data() {
@@ -32,15 +34,14 @@ export default {
   methods:{
       getBlogTypes: function () {
           var _this=this;
-          axios.get('http://localhost:8080/allBlogs')
-              .then(function (response) {
-                  console.log(response);
-                  _this.blogTypeCountList=response.data.result;
-
-              })
-              .catch(function (error) {
-                  console.log(error);
-              });
+          api.request('get', '/allBlogs', null)
+          .then(response => {
+            // console.log(response);
+            _this.blogTypeCountList=response.data.result;
+          })
+          .catch(error => {
+            console.log(error);
+          })
 
       }
   }

@@ -7,8 +7,7 @@
     <div class="panel panel-default">
       <div class="panel-heading">
         <h3 class="panel-title">
-          <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-          &nbsp;关于我</big>
+          <i class="icon ion-happy"></i>&nbsp;关于我</big>
         </h3>
       </div>
       <div class="panel-body">
@@ -24,6 +23,7 @@
 
 <script>
 import Vue from 'vue';
+import api from '../../api';
 // 注册Nav组件
 Vue.component('my-nav', function (resolve) {
   require(['./common/IndexNav'], resolve)
@@ -49,14 +49,14 @@ export default {
   methods:{
     getAboutMe:function(){
       var _this=this;
-      axios.get("http://localhost:8080/aboutMe")
-            .then(function (response) {
-              // console.log(response);
-              _this.aboutMe=response.data.result;
-            })
-            .catch(function (error) {
-              console.log(error);
-            });
+      api.request('get', '/aboutMe', null)
+      .then(response => {
+        // console.log(response);
+        _this.aboutMe=response.data.result;
+      })
+      .catch(error => {
+        console.log(error);
+      })
     }
   }
 }

@@ -8,7 +8,7 @@
           <!--开头一个标识-->
           <div class="panel-heading">
             <h3 class="panel-title">
-              <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>&nbsp;最新文章
+              <i class="icon ion-ios-list"></i>&nbsp;&nbsp;最新文章
             </h3>
           </div>
           
@@ -23,7 +23,7 @@
                     <span class="summary">摘要:{{blog.summary}}...</span> 
                       <br>
                     <span class="info pull-right">
-                      发表于 {{blog.releaseDate|timeFormat}}
+                      发表于 {{blog.releaseDate|prettyDate}}
                     阅读({{blog.clickHit}}) 评论({{blog.replyHit}}) 
                     </span>
                   </li>
@@ -67,6 +67,8 @@
 
 <script>
 import Vue from 'vue';
+import api from '../../api';
+import {prettyDate} from '../../filters';
 
 // 注册Nav组件
 Vue.component('my-nav', function (resolve) {
@@ -113,23 +115,35 @@ export default {
   methods:{
       getBlogsWithPage: function (pageId) {
           var _this=this;
-          axios.get('http://localhost:8080/blogsWithPage',{
-                      params: {
-                        pageId: pageId
-                      }
-                    })
-              .then(function (response) {
-                  //console.log("getTypes");
-                  //console.log(response);
-                  // history.pushState(null, null, '/page/'+pageId);
-                  _this.$router.push('/page/'+pageId);
-                  _this.blogs=response.data.result.blogPageList; 
-                  _this.pageInfo=response.data.result.pageInfo;
+          // axios.get('http://localhost:8080/blogsWithPage',{
+          //             params: {
+          //               pageId: pageId
+          //             }
+          //           })
+          //     .then(function (response) {
+          //         //console.log("getTypes");
+          //         //console.log(response);
+          //         // history.pushState(null, null, '/page/'+pageId);
+          //         _this.$router.push('/page/'+pageId);
+          //         _this.blogs=response.data.result.blogPageList; 
+          //         _this.pageInfo=response.data.result.pageInfo;
 
-              })
-              .catch(function (error) {
-                  console.log(error);
-              });
+          //     })
+          //     .catch(function (error) {
+          //         console.log(error);
+          //     });
+
+          api.request('get', '/blogsWithPage?pageId='+pageId, null)
+          .then(response => {
+            // console.log(response);
+            // history.pushState(null, null, '/page/'+pageId);
+            _this.$router.push('/page/'+pageId);
+            _this.blogs=response.data.result.blogPageList; 
+            _this.pageInfo=response.data.result.pageInfo;
+          })
+          .catch(error => {
+            console.log(error);
+          })
 
       }
   }

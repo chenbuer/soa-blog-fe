@@ -32,6 +32,7 @@
 
 <script>
 import Vue from 'vue';
+import api from '../../api';
 // 注册Nav组件
 Vue.component('my-nav', function (resolve) {
   require(['./common/IndexNav'], resolve)
@@ -58,15 +59,24 @@ export default {
   methods:{
     getAboutMe:function(){
       var _this=this;
-      axios.get("http://localhost:8080/type/"+this.$route.params.typeName)
-            .then(function (response) {
-              console.log(response);
-              _this.blogs=response.data.result;
-              console.log(_this.blogs);
-            })
-            .catch(function (error) {
-              console.log(error);
-            });
+      // axios.get("http://localhost:8080/type/"+this.$route.params.typeName)
+      //       .then(function (response) {
+      //         console.log(response);
+      //         _this.blogs=response.data.result;
+      //         console.log(_this.blogs);
+      //       })
+      //       .catch(function (error) {
+      //         console.log(error);
+      //       });
+
+      api.request('get', '/type/'+this.$route.params.typeName, null)
+      .then(response => {
+        // console.log(response);
+         _this.blogs=response.data.result;
+      })
+      .catch(error => {
+        console.log(error);
+      })
     }
   }
 }

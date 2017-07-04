@@ -27,3 +27,20 @@
     }
   }
 </script>
+
+<style>
+
+.list-group-item {
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+.panel-heading{
+  text-align: center;
+  font-size: 250%;
+}
+.panel-footer{
+  text-align: center;
+  
+}
+</style>
