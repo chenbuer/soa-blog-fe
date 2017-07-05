@@ -1,5 +1,5 @@
 <template>
-  <div class="container container-table" style="background-color:#282B30">
+  <div class="container container-table">
       <div class="row vertical-10p">
         <div class="container">
           <img src="/static/img/logo.png" class="center-block logo">
@@ -16,7 +16,7 @@
                 <span class="input-group-addon"><i class="fa fa-lock"></i></span>
                 <input class="form-control" name="password" placeholder="Password" type="password" v-model="password">
               </div>
-              <button type="submit" v-bind:class="'btn btn-primary btn-lg ' + loading">Submit</button>
+              <button type="submit" v-bind:class="'btn btn-primary btn-lg ' + loading">登录</button>
             </form>
 
             <!-- errors -->
@@ -50,50 +50,69 @@ export default {
       this.$store.commit('TOGGLE_LOADING')
 
       /* Making API call to authenticate a user */
-      api.request('post', '/login', {username, password})
+      api.request('post', '/login', {'userName':username, 'password':password})
       .then(response => {
         this.toggleLoading()
 
         var data = response.data
-        /* Checking if error object was returned from the server */
-        if (data.error) {
-          var errorName = data.error.name
-          if (errorName) {
-            this.response = errorName === 'InvalidCredentialsError'
-            ? 'Username/Password incorrect. Please try again.'
-            : errorName
-          } else {
-            this.response = data.error
-          }
 
-          return
-        }
+
+        /* Checking if error object was returned from the server */
+        // if (data.error) { // 收到响应了，但是相应结果是不对的
+        //   var errorName = data.error.name
+        //   if (errorName) {
+        //     this.response = errorName === 'InvalidCredentialsError'
+        //     ? 'Username/Password incorrect. Please try again.'
+        //     : errorName
+        //   } else {
+        //     this.response = data.error
+        //   }
+
+        //   return
+        // }
 
         /* Setting user in the state and caching record to the localStorage */
-        if (data.user) {
-          var token = 'Bearer ' + data.token
+        // if (data.user) { // 鉴权成功，存到vuex和localstorage
+        //   var token = 'Bearer ' + data.token
 
-          this.$store.commit('SET_USER', data.user)
+        //   this.$store.commit('SET_USER', data.user)
+        //   this.$store.commit('SET_TOKEN', token)
+
+        //   if (window.localStorage) {
+        //     window.localStorage.setItem('user', JSON.stringify(data.user))
+        //     window.localStorage.setItem('token', token)
+        //   }
+
+        //   this.$router.push(data.redirect)
+        // }
+        if(0==data.retCode){//表示登录成功
+          var token = 'Bearer ' + data.result.password;//将'Bearer ' 加上用户加密之后的密码作为的token
+
+          this.$store.commit('SET_USER', data.result.userName)
           this.$store.commit('SET_TOKEN', token)
 
           if (window.localStorage) {
-            window.localStorage.setItem('user', JSON.stringify(data.user))
+            window.localStorage.setItem('user', data.result.userName)
             window.localStorage.setItem('token', token)
           }
 
-          this.$router.push(data.redirect)
+          this.$router.push('/~') // 登录成功之后跳转到后台界面
+
+        }else{//表示登录失败
+            this.response = '用户名或密码错误，请重新登录.'
         }
+        console.log(data);
       })
       .catch(error => {
         this.$store.commit('TOGGLE_LOADING')
         console.log(error)
 
-        this.response = 'Server appears to be offline'
+        this.response = '服务器似乎不在线'
         this.toggleLoading()
       })
     },
     toggleLoading () {
-      this.loading = (this.loading === '') ? 'loading' : ''
+      this.loading = (this.loading === '') ? '正在登录...' : ''
     },
     resetResponse () {
       this.response = ''
@@ -103,9 +122,11 @@ export default {
 </script>
 
 <style scoped>
-
+html, body, .container-table {
+  height: 100%;
+  background-color: #282B30 !important;
+}
 .container-table {
-    height: 100%;
     display: table;
     color: white;
 }
