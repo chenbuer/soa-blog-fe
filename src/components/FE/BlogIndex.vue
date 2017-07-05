@@ -1,6 +1,6 @@
 <template>
 <div id="blogIndex">
-  <my-nav></my-nav>
+  <index-nav></index-nav>
   <div class="container">
       <div class="col-md-8">
         
@@ -54,43 +54,24 @@
 
       <!--slider开始-->
       <div class="col-md-4">
-        <my-types></my-types>
-        <!--<my-calender></my-calender>-->
-        <my-links></my-links>
+        <slider-types></slider-types>
+        <slider-links></slider-links>
       </div>
       <!--slider结束-->
-
+      
+      <index-footer></index-footer>
   </div>
-  <my-footer></my-footer>
+  
 </div>  
 </template>
 
 <script>
 import Vue from 'vue';
 import api from '../../api';
-import {prettyDate} from '../../filters';
-
-// 注册Nav组件
-Vue.component('my-nav', function (resolve) {
-  require(['./common/IndexNav'], resolve)
-});
-// 注册footer组件
-Vue.component('my-footer', function (resolve) {
-  require(['./common/IndexFooter'], resolve)
-});
-// 注册旁边的Slider三个组件
-Vue.component('my-types', function (resolve) {
-  require(['./common/indexSlider/IndexSliderTypes'], resolve)
-});
-// 按照日期进行分类，暂时先不写
-// Vue.component('my-calender', function (resolve) {
-//   require(['./common/indexSlider/IndexSliderCalendar'], resolve)
-// });
-Vue.component('my-links', function (resolve) {
-  require(['./common/indexSlider/IndexSliderLinks'], resolve)
-});
-
-
+import IndexNav from './common/IndexNav';
+import IndexFooter from './common/IndexFooter';
+import SliderLinks from './common/indexSlider/IndexSliderLinks';
+import SliderTypes from './common/indexSlider/IndexSliderTypes';
 
 export default {
   name: 'blogIndex',
@@ -115,23 +96,6 @@ export default {
   methods:{
       getBlogsWithPage: function (pageId) {
           var _this=this;
-          // axios.get('http://localhost:8080/blogsWithPage',{
-          //             params: {
-          //               pageId: pageId
-          //             }
-          //           })
-          //     .then(function (response) {
-          //         //console.log("getTypes");
-          //         //console.log(response);
-          //         // history.pushState(null, null, '/page/'+pageId);
-          //         _this.$router.push('/page/'+pageId);
-          //         _this.blogs=response.data.result.blogPageList; 
-          //         _this.pageInfo=response.data.result.pageInfo;
-
-          //     })
-          //     .catch(function (error) {
-          //         console.log(error);
-          //     });
 
           api.request('get', '/blogsWithPage?pageId='+pageId, null)
           .then(response => {
@@ -146,7 +110,8 @@ export default {
           })
 
       }
-  }
+  },
+  components:{IndexNav,IndexFooter,SliderLinks,SliderTypes}
 }
 </script>
 

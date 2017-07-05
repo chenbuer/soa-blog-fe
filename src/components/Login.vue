@@ -1,5 +1,5 @@
 <template>
-  <div class="container container-table">
+  <div class="container container-table" style="background-color:#282B30">
       <div class="row vertical-10p">
         <div class="container">
           <img src="/static/img/logo.png" class="center-block logo">
@@ -102,12 +102,10 @@ export default {
 }
 </script>
 
-<style>
-html, body, .container-table {
-  height: 100%;
-  background-color: #282B30 !important;
-}
+<style scoped>
+
 .container-table {
+    height: 100%;
     display: table;
     color: white;
 }

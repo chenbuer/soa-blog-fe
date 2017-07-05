@@ -1,6 +1,6 @@
 <template>
-<div>
-  <my-nav></my-nav>
+<div class="Article">
+  <index-nav></index-nav>
 
   <div class="container">
 
@@ -11,7 +11,7 @@
       </div>
     </div>
 
-    
+    <index-footer></index-footer>
   </div>
 
   <my-footer></my-footer>
@@ -21,15 +21,8 @@
 <script>
 import Vue from 'vue';
 import api from '../../api';
-// 注册Nav组件
-Vue.component('my-nav', function (resolve) {
-  require(['./common/IndexNav'], resolve)
-});
-// 注册footer组件
-Vue.component('my-footer', function (resolve) {
-  require(['./common/IndexFooter'], resolve)
-});
-
+import IndexNav from './common/IndexNav';
+import IndexFooter from './common/IndexFooter';
 
 export default {
   name: 'blogIndex',
@@ -56,7 +49,8 @@ export default {
         console.log(error);
       })
     }
-  }
+  },
+  components:{IndexNav,IndexFooter}
 }
 </script>
 

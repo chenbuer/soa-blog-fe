@@ -1,15 +1,13 @@
 <template>
 <div>
-  <my-nav></my-nav>
-
+  <index-nav></index-nav>
   <div class="container">
     
 
     <div class="panel panel-default">
       <div class="panel-heading">
         <h3 class="panel-title">
-          <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
-          &nbsp;博客类别：<big>{{$route.params.typeName}}</big>
+          <i class="icon ion-ios-folder"></i>&nbsp;&nbsp;博客类别：<big>{{$route.params.typeName}}</big>
         </h3>
       </div>
 
@@ -23,25 +21,17 @@
       </div>
     </div>
 
-    
+    <index-footer></index-footer>
   </div>
 
-  <my-footer></my-footer>
 </div>
 </template>
 
 <script>
 import Vue from 'vue';
 import api from '../../api';
-// 注册Nav组件
-Vue.component('my-nav', function (resolve) {
-  require(['./common/IndexNav'], resolve)
-});
-// 注册footer组件
-Vue.component('my-footer', function (resolve) {
-  require(['./common/IndexFooter'], resolve)
-});
-
+import IndexNav from './common/IndexNav';
+import IndexFooter from './common/IndexFooter';
 
 export default {
   name: 'blogIndex',
@@ -59,16 +49,6 @@ export default {
   methods:{
     getAboutMe:function(){
       var _this=this;
-      // axios.get("http://localhost:8080/type/"+this.$route.params.typeName)
-      //       .then(function (response) {
-      //         console.log(response);
-      //         _this.blogs=response.data.result;
-      //         console.log(_this.blogs);
-      //       })
-      //       .catch(function (error) {
-      //         console.log(error);
-      //       });
-
       api.request('get', '/type/'+this.$route.params.typeName, null)
       .then(response => {
         // console.log(response);
@@ -78,7 +58,8 @@ export default {
         console.log(error);
       })
     }
-  }
+  },
+  components:{IndexNav,IndexFooter}
 }
 </script>
 

@@ -19,6 +19,9 @@
           <li><router-link to="/" active-class="">陈不二的首页</router-link></li>
           <li><router-link to="/aboutMe">关于我</router-link></li>
         </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li class="text-right"><router-link to="/Login">登录</router-link></li>
+        </ul>
       </div>
     </div>
   </nav>
@@ -29,10 +32,12 @@
 
 <script>
 export default {
-  name: 'indexNav'
+  name: 'IndexNav'
 }
 </script>
 
 <style scoped>
-
+#login{
+  text-align: right;
+}
 </style>
