@@ -71,7 +71,7 @@
     </li>
 
     <li class="header">PAGES</li>
-    <li class="pageLink" v-on:click="toggleMenu">
+    <!--<li class="pageLink" v-on:click="toggleMenu">
       <router-link to="/~/login">
         <i class="fa fa-circle-o text-yellow"></i>
         <span class="page"> Login</span>
@@ -81,7 +81,7 @@
       <router-link to="/~/404"><i class="fa fa-circle-o text-red"></i>
         <span class="page"> 404</span>
       </router-link>
-    </li>
+    </li>-->
     <li class="pageLink" v-on:click="logout">
       <router-link to="/~/Logout"><i class="fa fa-circle-o text-red"></i>
         <span class="page">登出</span>
@@ -110,8 +110,8 @@ export default {
       event.toElement.parentElement.className = 'pageLink active'
     },
     logout(){
-      window.localStorage.setItem("user",null);
-      window.localStorage.setItem('token',null);
+      window.sessionStorage.setItem("user",null);
+      window.sessionStorage.setItem('token',null);
       this.$router.push("/");//动态设置跳转，其实用history对象也可以实现
     }
   }

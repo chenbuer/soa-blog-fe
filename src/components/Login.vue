@@ -92,8 +92,10 @@ export default {
           this.$store.commit('SET_TOKEN', token)
 
           if (window.localStorage) {
-            window.localStorage.setItem('user', data.result.userName)
-            window.localStorage.setItem('token', token)
+            // window.localStorage.setItem('user', data.result.userName)
+            // window.localStorage.setItem('token', token)
+            window.sessionStorage.setItem('user', data.result.userName)
+            window.sessionStorage.setItem('token', token)
           }
 
           this.$router.push('/~') // 登录成功之后跳转到后台界面

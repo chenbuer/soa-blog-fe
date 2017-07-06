@@ -52,7 +52,7 @@ const routes = [
     component: DashView,
     alias: '/zy',
     beforeEnter:(to,from,next)=>{
-      if(window.localStorage.getItem('user')==="chenbuer"){//此处的权限控制写死，其实不合理
+      if(window.sessionStorage.getItem('user')==="chenbuer"){//此处的权限控制写死，其实不合理
         next();
       }else{
         next('/Login');
