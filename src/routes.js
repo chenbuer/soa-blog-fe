@@ -51,6 +51,13 @@ const routes = [
     path: '/~',
     component: DashView,
     alias: '/zy',
+    beforeEnter:(to,from,next)=>{
+      if(window.localStorage.getItem('user')==="chenbuer"){//此处的权限控制写死，其实不合理
+        next();
+      }else{
+        next('/Login');
+      }      
+    },
     children: [
       {
         path: 'dashboard',
