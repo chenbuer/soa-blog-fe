@@ -82,6 +82,11 @@
         <span class="page"> 404</span>
       </router-link>
     </li>
+    <li class="pageLink" v-on:click="logout">
+      <router-link to="/~/Logout"><i class="fa fa-circle-o text-red"></i>
+        <span class="page">登出</span>
+      </router-link>
+    </li>
   </ul>
 </template>
 <script>
@@ -103,6 +108,11 @@ export default {
       // window.$('li.pageLink.active').removeClass('active')
       // Add it to the item that was clicked
       event.toElement.parentElement.className = 'pageLink active'
+    },
+    logout(){
+      window.localStorage.setItem("user",null);
+      window.localStorage.setItem('token',null);
+      this.$router.push("/");//动态设置跳转，其实用history对象也可以实现
     }
   }
 }
