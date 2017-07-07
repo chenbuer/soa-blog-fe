@@ -13,7 +13,7 @@
       </router-link>
     </li>
     <li class="pageLink" v-on:click="toggleMenu">
-      <router-link to="/~/server"><i class="fa fa-cog"></i>
+      <router-link to="/~/editAboutMe"><i class="fa fa-cog"></i>
         <span class="page">个人信息管理</span>
       </router-link>
     </li>

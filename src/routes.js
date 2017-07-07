@@ -3,15 +3,10 @@ import LoginView from './components/Login.vue'
 import NotFoundView from './components/404.vue'
 
 // 后台DashBoard的view
-// import DashboardView from './components/BE/views/Dashboard.vue'
-// import TablesView from './components/BE/views/Tables.vue'
-// import TasksView from './components/BE/views/Tasks.vue'
-// import SettingView from './components/BE/views/Setting.vue'
-// import AccessView from './components/BE/views/Access.vue'
-import ServerView from './components/BE/views/Server.vue'
-// import ReposView from './components/BE/views/Repos.vue'
+import EditAboutMe from './components/BE/views/EditAboutMe.vue'
 import BlogTable from './components/BE/views/BlogTable.vue'
 import BlogDashBoard from './components/BE/views/BlogDashboard.vue'
+// import BlogEditor from './components/BE/views/Editor.vue'
 
 
 // 前台的View
@@ -68,18 +63,24 @@ const routes = [
         alias: '',
         component: BlogDashBoard,
         name: 'BlogDashBoard',
-        meta: {description: 'blog dashboard'}
+        meta: {description: '博客网站的dashboard'}
       }, {
         path: 'blogs',
         component: BlogTable,
         name: 'BlogTable',
-        meta: {description: 'List of My Blogs'}
+        meta: {description: '博文列表'}
       }, {
-        path: 'server',
-        component: ServerView,
-        name: 'Servers',
-        meta: {description: 'List of our servers'}
-      }
+        path: 'editAboutMe',
+        component: EditAboutMe,
+        name: 'EditAboutMe',
+        meta: {description: '修改博主信息'}
+      }, 
+      // {
+      //   path: 'editor',
+      //   component: BlogEditor,
+      //   name: 'BlogEditor',
+      //   meta: {description: 'Edit Blog'}
+      // }
     ]
   }, {
     // not found handler
