@@ -2,15 +2,19 @@ import DashView from './components/BE/Dash.vue'
 import LoginView from './components/Login.vue'
 import NotFoundView from './components/404.vue'
 
-// Import Views - Dash
-import DashboardView from './components/BE/views/Dashboard.vue'
-import TablesView from './components/BE/views/Tables.vue'
-import TasksView from './components/BE/views/Tasks.vue'
-import SettingView from './components/BE/views/Setting.vue'
-import AccessView from './components/BE/views/Access.vue'
+// 后台DashBoard的view
+// import DashboardView from './components/BE/views/Dashboard.vue'
+// import TablesView from './components/BE/views/Tables.vue'
+// import TasksView from './components/BE/views/Tasks.vue'
+// import SettingView from './components/BE/views/Setting.vue'
+// import AccessView from './components/BE/views/Access.vue'
 import ServerView from './components/BE/views/Server.vue'
-import ReposView from './components/BE/views/Repos.vue'
+// import ReposView from './components/BE/views/Repos.vue'
+import BlogTable from './components/BE/views/BlogTable.vue'
+import BlogDashBoard from './components/BE/views/BlogDashboard.vue'
 
+
+// 前台的View
 import BlogIndex from '@/components/FE/BlogIndex'
 import AboutMe from '@/components/FE/AboutMe'
 import Article from '@/components/FE/Article'
@@ -62,39 +66,19 @@ const routes = [
       {
         path: 'dashboard',
         alias: '',
-        component: DashboardView,
-        name: 'Dashboard',
-        meta: {description: 'Overview of environment'}
+        component: BlogDashBoard,
+        name: 'BlogDashBoard',
+        meta: {description: 'blog dashboard'}
       }, {
-        path: 'tables',
-        component: TablesView,
-        name: 'Tables',
-        meta: {description: 'Simple and advance table in CoPilot'}
-      }, {
-        path: 'tasks',
-        component: TasksView,
-        name: 'Tasks',
-        meta: {description: 'Tasks page in the form of a timeline'}
-      }, {
-        path: 'setting',
-        component: SettingView,
-        name: 'Settings',
-        meta: {description: 'User settings page'}
-      }, {
-        path: 'access',
-        component: AccessView,
-        name: 'Access',
-        meta: {description: 'Example of using maps'}
+        path: 'blogs',
+        component: BlogTable,
+        name: 'BlogTable',
+        meta: {description: 'List of My Blogs'}
       }, {
         path: 'server',
         component: ServerView,
         name: 'Servers',
         meta: {description: 'List of our servers'}
-      }, {
-        path: 'repos',
-        component: ReposView,
-        name: 'Repository',
-        meta: {description: 'List of popular javascript repos'}
       }
     ]
   }, {

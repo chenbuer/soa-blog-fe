@@ -21,7 +21,6 @@
 </template>
 <script>
   import {servers} from '../../../demo'
-
   export default {
     name: 'Servers',
     data () {
