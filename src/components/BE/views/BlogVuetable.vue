@@ -6,8 +6,10 @@
     :fields="fields"
     :muti-sort="true"
     :item-actions="itemActions"
+    pagination-path="" 
+    @vuetable:pagination-data="onPaginationData"
   ></vuetable>
-   <vuetable-pagination ref="pagination"></vuetable-pagination>
+   <vuetable-pagination ref="pagination" @vuetable-pagination:change-page="onChangePage"></vuetable-pagination>
    </div>
 </template>
 
@@ -57,7 +59,7 @@ export default {
         titleClass: 'center aligned',
         dataClass: 'center aligned'
       }],
-      apiUrl:config.serverURI+"/admin/blogsWithPage?pageId=2",
+      apiUrl:config.serverURI+"/admin/blogsWithPage",
       itemActions: [
 	                { name: 'view-item', label: '', icon: 'zoom icon', class: 'ui teal button' },
 	                { name: 'edit-item', label: '', icon: 'edit icon', class: 'ui orange button'},
@@ -68,6 +70,12 @@ export default {
   methods: {
       viewProfile: function(id) {
           console.log('view profile with id:', id)
+      },
+      onPaginationData (paginationData) {
+        this.$refs.pagination.setPaginationData(paginationData)
+      },
+      onChangePage (page) {
+        this.$refs.vuetable.changePage(page)
       }
   },
   events: {

@@ -26,12 +26,12 @@
             name="search"
             id="search"
             class="search form-control"
-            data-toggle="hideseek" p
+            data-toggle="hideseek" 
             laceholder="Search Menus"
             data-list=".sidebar-menu">
           <span class="input-group-btn">
             <button type="submit" name="search" id="search-btn" class="btn btn-flat">
-              <i class="fa fa-search"></i>
+              <i class="icon ion-search"></i>
             </button>
           </span>
         </div>
