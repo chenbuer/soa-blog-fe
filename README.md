@@ -7,3 +7,7 @@
 先不管了，先把的table搞定。
 
 新增博客的时候，type类型先搁置，后面处理。
+
+一个问题：
+在BlogVuetable.vue中引用了Search.vue
+Search过滤（vue-events）之后怎么修改BlogVuetable中的值
