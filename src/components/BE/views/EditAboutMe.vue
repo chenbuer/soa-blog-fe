@@ -26,9 +26,8 @@
     <!--<div class="html ql-editor" v-html="profile"></div>-->
   </div>
     
-    <div class="row">
-      <button class="btn btn-primary" type="submit" @click="onSubmit">保存</button>
-    </div>
+  <button class="btn btn-primary" type="submit" @click="onSubmit">保存</button>
+  
   </md-card>
 
 

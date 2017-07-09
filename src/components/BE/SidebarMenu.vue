@@ -36,11 +36,6 @@
 <script>
 export default {
   name: 'SidebarName',
-  data () {
-    return {
-      aminPre: '~'
-    }
-  },
   methods: {
     toggleMenu (event) {
       // remove active from li
