@@ -17,6 +17,7 @@
 import Vue from 'vue'
 import Vuetable from 'vuetable-2/src/components/Vuetable'
 import config from '../../../config'
+import {prettyDate} from '../../../filters'
 import VuetablePagination from 'vuetable-2/src/components/VuetablePagination'
 import Search from './forVueTable/Search'
 import Crud from './forVueTable/Crud'
@@ -51,17 +52,17 @@ export default {
       {
         title: 'releaseDate',
         name:"releaseDate",
-        sortField: 'releaseDate'
+        sortField: 'releaseDate',
+        callback: 'prettyDate'
       },
       {
-        name: '__component:custom-actions',   // <----
+        name: '__component:custom-actions',   
         title: 'Actions',
         titleClass: 'center aligned',
         dataClass: 'center aligned'
       }],
       apiUrl:config.serverURI+"/admin/blogsWithPage",
       itemActions: [
-	                { name: 'view-item', label: '', icon: 'zoom icon', class: 'ui teal button' },
 	                { name: 'edit-item', label: '', icon: 'edit icon', class: 'ui orange button'},
 	                { name: 'delete-item', label: '', icon: 'delete icon', class: 'ui red button' }
 	    ]
@@ -76,6 +77,9 @@ export default {
       },
       onChangePage (page) {
         this.$refs.vuetable.changePage(page)
+      },
+      prettyDate(time){
+        return prettyDate(time)
       }
   },
   events: {
