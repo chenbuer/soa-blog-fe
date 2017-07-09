@@ -4,8 +4,9 @@ import NotFoundView from './components/404.vue'
 
 // 后台DashBoard的view
 import EditAboutMe from './components/BE/views/EditAboutMe.vue'
-import BlogTable from './components/BE/views/BlogTable.vue'
+import BlogTable from './components/BE/views/BlogVuetable.vue'
 import BlogDashBoard from './components/BE/views/BlogDashboard.vue'
+import AddBlog from './components/BE/views/AddBlog.vue'
 // import BlogEditor from './components/BE/views/Editor.vue'
 
 
@@ -49,7 +50,6 @@ const routes = [
   {
     path: '/~',
     component: DashView,
-    alias: '/zy',
     beforeEnter:(to,from,next)=>{
       if(window.sessionStorage.getItem('user')==="chenbuer"){//此处的权限控制写死，其实不合理
         next();
@@ -69,6 +69,11 @@ const routes = [
         component: BlogTable,
         name: 'BlogTable',
         meta: {description: '博文列表'}
+      }, {
+        path: 'addBlog',
+        component: AddBlog,
+        name: 'AddBlog',
+        meta: {description: '新增博文'}
       }, {
         path: 'editAboutMe',
         component: EditAboutMe,

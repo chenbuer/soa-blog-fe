@@ -3,23 +3,28 @@
     
     <li class="header">陈不二的博客</li>
     <li class="active pageLink" v-on:click="toggleMenu">
-      <router-link to="/~"><i class="fa fa-desktop"></i>
+      <router-link to="/~"><i class="icon ion-monitor"></i>
         <span class="page">Dashboard</span>
       </router-link>
     </li>
     <li class="pageLink" v-on:click="toggleMenu">
-      <router-link to="/~/blogs"><i class="fa fa-book"></i>
+      <router-link to="/~/blogs"><i class="icon ion-clipboard"></i>
         <span class="page">博客列表管理</span>
       </router-link>
     </li>
     <li class="pageLink" v-on:click="toggleMenu">
-      <router-link to="/~/editAboutMe"><i class="fa fa-cog"></i>
+      <router-link to="/~/addBlog"><i class="icon ion-plus"></i>
+        <span class="page">新增文章</span>
+      </router-link>
+    </li>
+    <li class="pageLink" v-on:click="toggleMenu">
+      <router-link to="/~/editAboutMe"><i class="icon ion-person"></i>
         <span class="page">个人信息管理</span>
       </router-link>
     </li>
-
+    <li class="header">登录登出</li>
     <li class="pageLink" v-on:click="logout">
-      <router-link to="/~/Logout"><i class="fa fa-circle-o text-red"></i>
+      <router-link to="/~/Logout"><i class="icon ion-log-out"></i>
         <span class="page">登出</span>
       </router-link>
     </li>

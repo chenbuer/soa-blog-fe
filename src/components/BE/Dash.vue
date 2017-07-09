@@ -138,7 +138,7 @@
         <ol class="breadcrumb">
           <li>
             <a href="javascript:;">
-              <i class="fa fa-home"></i>Home</a>
+              <i class="icon ion-home"></i>Home</a>
           </li>
           <li class="active">{{$route.name.toUpperCase()}}</li>
         </ol>

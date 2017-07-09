@@ -36,13 +36,13 @@
             <nav aria-label="Page navigation">
               <ul class="pagination">
                 <li :class="pageInfo.showPre==false?'disabled':''">
-                  <a>&laquo;</a>
+                  <a @click="getBlogsWithPage(pageInfo.curPage-1)">&laquo;</a>
                 </li>
                 <li v-for="pageId in pageInfo.listPages" :class="pageInfo.curPage==pageId?'active':''">
                   <a @click="getBlogsWithPage(pageId)">{{pageId}}</a>
                 </li>
                 <li :class="pageInfo.showNext==false?'disabled':''">
-                  <a>&raquo;</a>
+                  <a @click="getBlogsWithPage(pageInfo.curPage+1)">&raquo;</a>
                 </li>
               </ul>
             </nav>
