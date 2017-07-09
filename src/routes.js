@@ -7,7 +7,7 @@ import EditAboutMe from './components/BE/views/EditAboutMe.vue'
 import BlogTable from './components/BE/views/BlogVuetable.vue'
 import BlogDashBoard from './components/BE/views/BlogDashboard.vue'
 import AddBlog from './components/BE/views/AddBlog.vue'
-// import BlogEditor from './components/BE/views/Editor.vue'
+// import BlogEditor from './components/BE/views/EditBlog.vue'
 
 
 // 前台的View
