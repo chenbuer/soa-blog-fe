@@ -14,20 +14,17 @@
   </div>
 
   <label for="location">正文：</label>
-  <md-card>
-    <md-card-media>
-      <div class="quill-editor-example">
-        <!-- quill-editor -->
-        <quill-editor ref="myTextEditor"
-                      v-model="content"
-                      :options="editorOption"
-                      @blur="onEditorBlur($event)"
-                      @focus="onEditorFocus($event)"
-                      @ready="onEditorReady($event)">
-        </quill-editor>
-        <!--<div class="html ql-editor" v-html="content"></div>-->
-      </div>
-    </md-card-media>
+  <div class="quill-editor-example">
+    <!-- quill-editor -->
+    <quill-editor ref="myTextEditor"
+                  v-model="profile"
+                  :options="editorOption"
+                  @blur="onEditorBlur($event)"
+                  @focus="onEditorFocus($event)"
+                  @ready="onEditorReady($event)">
+    </quill-editor>
+    <!--<div class="html ql-editor" v-html="profile"></div>-->
+  </div>
     
     <div class="row">
       <button class="btn btn-primary" type="submit" @click="onSubmit">保存</button>
@@ -51,22 +48,40 @@ export default {
       name: 'base-example',
       nickName:'',
       sign:'',
-      content: '请输入...',      
+      profile: '请输入...',      
       editorOption: {}
     }
   },
   methods: {
     onEditorBlur(editor) {
       // console.log('editor blur!', editor)
-      // console.log(this.content)
+      // console.log(this.profile)
     },
     onEditorFocus(editor) {
       // console.log('editor focus!', editor)
-      // console.log(this.content)
+      // console.log(this.profile)
     },
     onEditorReady(editor) {
       // console.log('editor ready!', editor)
-      // console.log(this.content)
+      // console.log(this.profile)
+    },
+    onSubmit(){
+      api.request('post', '/admin/updateAboutMe',{
+        'userName':window.sessionStorage.getItem("user"),
+        'nickName':this.nickName,
+        'sign':this.sign,
+        'profile':this.profile})
+      .then(response => {
+        if(response.data.retCode==0){
+          alert("修改成功");
+        }else{
+          alert("修改失败，内部错误。联系不二。");
+        }
+      })
+      .catch(error => {
+        console.log(error);
+        alert(error);
+      })
     }
   },
   computed: {
@@ -81,7 +96,7 @@ export default {
         var aboutMe=response.data.result;
         this.nickName=aboutMe.nickName;
         this.sign=aboutMe.sign;
-        this.content=aboutMe.profile;
+        this.profile=aboutMe.profile;
         console.log(aboutMe);
       })
       .catch(error => {
