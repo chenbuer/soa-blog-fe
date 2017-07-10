@@ -32,7 +32,9 @@ export default {
   data() {
     return {
       name: 'base-example',
-      editorOption: {},
+      editorOption: {
+        placeholder: '请输入...'
+      },
       title:'',
       type:'',//type暂时写死，后面处理
       content:''
