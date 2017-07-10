@@ -27,7 +27,8 @@
           .then(response => {
             console.log("del blog"+rowData.title+"SUCCESS");
             // this.$refs.vuetable.refresh();
-            this.$parent.refresh();
+            // this.$parent.refresh();
+            this.$parent.reload();//在vutable-2项目中提的issue中有答案。
           })
           .catch(error => {
             console.log(error);

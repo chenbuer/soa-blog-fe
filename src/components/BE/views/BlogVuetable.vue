@@ -1,6 +1,7 @@
 <template>
 <div>
   <search></search>
+
   <vuetable ref="vuetable"
     :api-url="apiUrl"
     :fields="fields"
@@ -10,8 +11,15 @@
     @vuetable:pagination-data="onPaginationData"
   ></vuetable>
 
-      <vuetable-pagination ref="paginationTop" @vuetable-pagination:change-page="onChangePage">
-      </vuetable-pagination>
+<div class="vuetable-pagination ui basic segment grid">
+  <vuetable-pagination-info ref="paginationInfoTop"
+    ></vuetable-pagination-info>
+    <vuetable-pagination ref="paginationTop"
+      @vuetable-pagination:change-page="onChangePage"
+    ></vuetable-pagination>
+ </div>
+  <!--<vuetable-pagination ref="pagination" @vuetable-pagination:change-page="onChangePage">
+  </vuetable-pagination>-->
 </div>
 </template>
 
@@ -21,6 +29,7 @@ import Vuetable from 'vuetable-2/src/components/Vuetable'
 import config from '../../../config'
 import {prettyDate} from '../../../filters'
 import VuetablePagination from 'vuetable-2/src/components/VuetablePagination'
+import VuetablePaginationInfo from 'vuetable-2/src/components/VuetablePaginationInfo'
 import Search from './forVueTable/Search'
 import Crud from './forVueTable/Crud'
 
@@ -28,7 +37,7 @@ Vue.component('custom-actions',Crud)
 
 export default {
   components: {
-    Vuetable,VuetablePagination,Search
+    Vuetable,VuetablePagination,VuetablePaginationInfo,Search
   },
   data(){
     return {
@@ -75,8 +84,9 @@ export default {
           console.log('view profile with id:', id)
       },
       onPaginationData (paginationData) {
-        this.$refs.pagination.setPaginationData(paginationData)
-        this.$refs.paginationInfo.setPaginationData(paginationData)   // <----
+        // this.$refs.pagination.setPaginationData(paginationData)
+        this.$refs.paginationTop.setPaginationData(paginationData)
+        this.$refs.paginationInfoTop.setPaginationData(paginationData)
       },
       onChangePage (page) {
         this.$refs.vuetable.changePage(page)
