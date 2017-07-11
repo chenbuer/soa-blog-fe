@@ -42,7 +42,7 @@ export default {
   },
   methods: {
     onSubmit(){
-      api.request('post', '/admin/addBlog',{
+      api.request('post', '/admin/save',{
         'title':this.title,
         'type':this.type,
         'content':this.content})
