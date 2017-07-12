@@ -12,6 +12,10 @@ import { domain, count, prettyDate, pluralize } from './filters'
 // Import Views - Top level
 import AppView from './components/App.vue'
 
+//添加bootstrap-vue组件！
+import BootstrapVue from 'bootstrap-vue';
+Vue.use(BootstrapVue);
+
 // Import Install and register helper items
 Vue.filter('count', count)
 Vue.filter('domain', domain)

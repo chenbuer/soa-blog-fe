@@ -1,16 +1,27 @@
 <template>
 <div class="container">
   <div class="form-group">
-    <label for="display_name">文章标题：</label>
+    <label>文章标题：</label>
     <input class="form-control" type="text" placeholder="请输入文章标题" v-model="title">
   </div>
 
-  <label for="location">正文：</label>
+  <div>
+    <label>文章类型：</label>
+    <br/>
+    <b-form-select v-model="selected"
+                   :options="blogTypes"
+                   class="mb-3"
+    ></b-form-select>
+    <div>Selected: <strong>{{selected}}</strong></div>
+  </div>
+
+  <label>正文：</label>
       <div class="quill-editor-example">
         <!-- quill-editor -->
         <quill-editor ref="myTextEditor"
                       v-model="content"
-                      :options="editorOption">
+                      :options="editorOption"
+                      id="quill">
         </quill-editor>
         <!--<div class="html ql-editor" v-html="content"></div>-->
       </div>
@@ -23,29 +34,34 @@
 
 <script>
 import { quillEditor } from 'vue-quill-editor'
- import api from '../../../api'
-  
+import api from '../../../api'
+
 export default {
   components:{
     quillEditor
   },
   data() {
     return {
+      selected: null,
       name: 'base-example',
       editorOption: {
         placeholder: '请输入...'
       },
       title:'',
-      type:'',//type暂时写死，后面处理
-      content:''
+      content:'',
+      blogTypes:[]
     }
   },
   methods: {
     onSubmit(){
+      var summary=this.$children[1].quill.getText().substr(0, 155);      
       api.request('post', '/admin/save',{
         'title':this.title,
-        'type':this.type,
-        'content':this.content})
+        'content':this.content,
+        'summary':summary,
+        'typeId':this.selected,
+        'keyWord':''
+        })
       .then(response => {
         if(response.data.retCode==0){
           alert("添加文章成功");
@@ -65,7 +81,16 @@ export default {
     }
   },
   mounted() {
-    console.log('this is my editor', this.editor)
+    // console.log('this is my editor', this.editor)
+    api.request('get', '/admin/blogsTypes',)
+      .then(response => {
+        this.blogTypes=response.data.result;
+        //添加一个默认的提示
+        this.blogTypes.splice(0,0,{text: '请选择博客类型',value: null});
+      })
+      .catch(error => {
+        console.log(error);
+      })
   }
 }
 </script>
