@@ -1,6 +1,6 @@
 <template>
 <div>
-  <search></search>
+  <!--<search></search>-->
 
   <vuetable ref="vuetable"
     :api-url="apiUrl"
@@ -42,11 +42,11 @@ export default {
   data(){
     return {
       fields:[
-      {
-        name: '__checkbox',   // <----
-        titleClass: 'center aligned',
-        dataClass: 'center aligned'
-      },
+      // {
+      //   name: '__checkbox',   // <----
+      //   titleClass: 'center aligned',
+      //   dataClass: 'center aligned'
+      // },
       {
         name:"title",
         sortField: 'title',

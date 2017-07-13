@@ -12,7 +12,6 @@
                    :options="blogTypes"
                    class="mb-3"
     ></b-form-select>
-    <div>Selected: <strong>{{selected}}</strong></div>
   </div>
 
   <label>正文：</label>
