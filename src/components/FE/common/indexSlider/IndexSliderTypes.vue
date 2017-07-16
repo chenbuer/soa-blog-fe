@@ -8,7 +8,7 @@
     <div class="panel-body">
       <ul class="list-group" v-for="type in types">
         <li class="list-group-item">
-          <span class="badge">{{type.blogCount}}</span>
+          <span class="badge">{{type.orderNo}}</span>
           <router-link :to="{ name: 'blogType', params: { 'typeName': type.typeName }}">{{type.typeName}}</router-link>
         </li>
       </ul>

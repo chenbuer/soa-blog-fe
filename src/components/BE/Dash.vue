@@ -61,7 +61,6 @@
 </template>
 
 <script>
-import faker from 'faker'
 import { mapState } from 'vuex'
 import config from '../../config'
 import Sidebar from './Sidebar'
@@ -90,9 +89,7 @@ export default {
     demo () {
       return {
         displayName: window.sessionStorage.getItem("user"),
-        avatar: faker.image.avatar(),
-        email: faker.internet.email(),
-        randomCard: faker.helpers.createCard()
+        avatar: '/static/img/me.png'
       }
     }
   },

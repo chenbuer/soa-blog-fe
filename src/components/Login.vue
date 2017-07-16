@@ -1,6 +1,10 @@
 <template>
 <div class="container-fluid">
-          <div class="text-center col-md-4 col-sm-offset-4">
+
+  <div class="panel panel-default" style="border: none;">
+  <div class="panel-heading" style="height:10em;border:none;background-color:#ffffff" ></div>
+  <div class="panel-body">
+    <div class="text-center col-md-4 col-sm-offset-4">
             <!-- login form -->
             <form class="ui form loginForm"  @submit.prevent="checkCreds">
 
@@ -19,6 +23,11 @@
             <!-- errors -->
             <div v-if=response class="text-red"><p>{{response}}</p></div>
           </div>
+  </div>
+</div>
+
+
+          
 </div>
 </template>
 
