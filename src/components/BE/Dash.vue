@@ -104,11 +104,12 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .wrapper.fixed_layout {
   .main-header {
     position: fixed;
     width: 100%;
+    height: 100%;
   }
 
   .content-wrapper {

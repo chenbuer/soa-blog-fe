@@ -108,3 +108,18 @@ export default {
   }
 }
 </script>
+
+<style lang="scss">
+  .ql-container .ql-editor {
+    min-height: 20em;
+    padding-bottom: 1em;
+    max-height: 25em;
+  }
+  .html {
+    height: 9em;
+    overflow-y: auto;
+    border: 1px solid #ccc;
+    border-top: none;
+    resize: vertical;
+  }
+</style>

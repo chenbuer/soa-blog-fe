@@ -16,7 +16,7 @@ export default {
     value:"输入博客内容"
 }
 </script>
-<style>
+<style scoped>
 #editor {
     margin: auto;
     width: 80%;

@@ -159,7 +159,7 @@ import modal from 'vue-strap/src/Modal.vue'
   }
   </script>
 
-  <style>
+  <style scoped>
     .custom-actions button.ui.button {
       padding: 8px 8px;
     }

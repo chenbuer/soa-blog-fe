@@ -51,7 +51,7 @@ export default {
   components: { SidebarMenu }
 }
 </script>
-<style>
+<style scoped>
   .user-panel .image img {
     border-radius: 50%;
   }

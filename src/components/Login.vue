@@ -1,8 +1,5 @@
 <template>
-  <div class="container container-table">
-      <div class="row vertical-10p">
-        <div class="container">
-          <img src="/static/img/logo.png" class="center-block logo">
+<div class="container-fluid">
           <div class="text-center col-md-4 col-sm-offset-4">
             <!-- login form -->
             <form class="ui form loginForm"  @submit.prevent="checkCreds">
@@ -22,9 +19,7 @@
             <!-- errors -->
             <div v-if=response class="text-red"><p>{{response}}</p></div>
           </div>
-        </div>
-      </div>
-  </div>
+</div>
 </template>
 
 <script>
@@ -47,7 +42,7 @@ export default {
 
       this.toggleLoading()
       this.resetResponse()
-      this.$store.commit('TOGGLE_LOADING')
+      // this.$store.commit('TOGGLE_LOADING')
 
       /* Making API call to authenticate a user */
       api.request('post', '/login', {'userName':username, 'password':password})
@@ -88,8 +83,8 @@ export default {
         if(0==data.retCode){//表示登录成功
           var token = 'Bearer ' + data.result.password;//将'Bearer ' 加上用户加密之后的密码作为的token
 
-          this.$store.commit('SET_USER', data.result.userName)
-          this.$store.commit('SET_TOKEN', token)
+          // this.$store.commit('SET_USER', data.result.userName)
+          // this.$store.commit('SET_TOKEN', token)
 
           if (window.localStorage) {
             // window.localStorage.setItem('user', data.result.userName)
@@ -106,7 +101,7 @@ export default {
         console.log(data);
       })
       .catch(error => {
-        this.$store.commit('TOGGLE_LOADING')
+        // this.$store.commit('TOGGLE_LOADING')
         console.log(error)
 
         this.response = '服务器似乎不在线'
@@ -123,10 +118,9 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
 html, body, .container-table {
   height: 100%;
-  background-color: #282B30 !important;
 }
 .container-table {
     display: table;

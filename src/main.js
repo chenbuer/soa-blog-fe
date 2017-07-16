@@ -1,4 +1,3 @@
-// Import System requirements
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 
@@ -10,7 +9,7 @@ import store from './store'
 import { domain, count, prettyDate, pluralize } from './filters'
 
 // Import Views - Top level
-import AppView from './components/App.vue'
+import App from './components/App.vue'
 
 //添加bootstrap-vue组件！
 import BootstrapVue from 'bootstrap-vue';
@@ -24,6 +23,8 @@ Vue.filter('pluralize', pluralize)
 
 Vue.use(VueRouter)
 
+Vue.config.productionTip = false
+
 // Routing logic
 var router = new VueRouter({
   routes: routes,
@@ -34,37 +35,23 @@ var router = new VueRouter({
 })
 
 // Some middleware to help us ensure the user is authenticated.
-router.beforeEach((to, from, next) => {
+// router.beforeEach((to, from, next) => {
   // window.console.log('Transition', transition)
-  if (to.auth && (to.router.app.$store.state.token === 'null')) {
-    window.console.log('Not authenticated')
-    next({
-      path: '/login',
-      query: { redirect: to.fullPath }
-    })
-  } else {
-    next()
-  }
-})
+//   if (to.auth && (to.router.app.$store.state.token === 'null')) {
+//     window.console.log('Not authenticated')
+//     next({
+//       path: '/login',
+//       query: { redirect: to.fullPath }
+//     })
+//   } else {
+//     next()
+//   }
+// })
 
-sync(store, router)
-
-// Start out app!
-// eslint-disable-next-line no-new
+/* eslint-disable no-new */
 new Vue({
-  el: '#root',
+  el: '#root', 
   router: router,
-  store: store,
-  render: h => h(AppView)
+  template: '<App/>',
+  components: { App }
 })
-
-// Check local storage to handle refreshes
-if (window.localStorage) {
-  var localUserString = window.localStorage.getItem('user') || 'null'
-  var localUser = JSON.parse(localUserString)
-
-  if (localUser && store.state.user !== localUser) {
-    store.commit('SET_USER', localUser)
-    store.commit('SET_TOKEN', window.localStorage.getItem('token'))
-  }
-}

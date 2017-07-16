@@ -94,7 +94,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
   .ql-container .ql-editor {
     min-height: 20em;
     padding-bottom: 1em;
