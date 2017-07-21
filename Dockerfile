@@ -7,7 +7,8 @@ WORKDIR /home/nginx
 
 RUN ["yum","install","nginx","-y"]
 
-ADD ./dist /data
+# 不直接拷贝了，改成磁盘映射，这样修改之后不需要重新做镜像了 -v
+# ADD ./dist /data 
 ADD /conf/nginx.conf /etc/nginx/
 ADD run.sh /home/nginx
 RUN chmod 777 /home/nginx/run.sh
